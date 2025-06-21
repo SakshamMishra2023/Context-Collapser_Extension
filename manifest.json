@@ -1,3 +1,28 @@
 {
-    "version":"1.0"
+  "manifest_version": 3,
+  "name": "Context Collapser Research Tool",
+  "version": "1.0",
+  "description": "A Chrome extension to help Reaearch with 10x productivity",
+  "background": {
+    "service_worker": "background.js"
+  },
+  "permissions": [
+    "tabs",
+    "storage",
+    "scripting",
+    "contextMenus"
+  ],
+  "host_permissions": [
+    
+  ],
+  "content_scripts": [
+    {
+      "matches": ["https://*.example.com/*"],
+      "js": ["content.js"]
+    }
+  ],
+  "icons": {
+    
+  },
+  "options_page": "options.html"
 }
