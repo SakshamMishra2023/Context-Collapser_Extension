@@ -1,28 +1,19 @@
 {
   "manifest_version": 3,
-  "name": "Context Collapser Research Tool",
+  "name": "Context Collapser",
   "version": "1.0",
-  "description": "A Chrome extension to help Reaearch with 10x productivity",
-  "background": {
-    "service_worker": "background.js"
-  },
+  "description": "Highlight and save text from webpages to streamline your research.",
   "permissions": [
-    "tabs",
     "storage",
-    "scripting",
-    "contextMenus"
+    "contextMenus",
+    "tabs",
+    "scripting"
   ],
   "host_permissions": [
-    
+    "<all_urls>"
   ],
-  "content_scripts": [
-    {
-      "matches": ["https://*.example.com/*"],
-      "js": ["content.js"]
-    }
-  ],
-  "icons": {
-    
+  "background": {
+    "service_worker": "background.js"
   },
   "action": {
     "default_popup": "popup.html",
@@ -32,5 +23,16 @@
       "128": "icons/icon128.png"
     }
   },
-  "options_page": "options.html"
+  "icons": {
+    "16": "icons/icon16.png",
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png"
+  },
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": ["content.js"],
+      "css": ["content.css"]
+    }
+  ]
 }
