@@ -13,24 +13,16 @@
     "contextMenus"
   ],
   "host_permissions": [
-    
+    "<all_urls>"
   ],
   "content_scripts": [
     {
-      "matches": ["https://*.example.com/*"],
+      "matches": ["<all_urls>"],
       "js": ["content.js"]
     }
   ],
-  "icons": {
-    
-  },
   "action": {
-    "default_popup": "popup.html",
-    "default_icon": {
-      "16": "icons/icon16.png",
-      "48": "icons/icon48.png",
-      "128": "icons/icon128.png"
-    }
+    "default_popup": "popup.html"
   },
   "options_page": "options.html"
 }
