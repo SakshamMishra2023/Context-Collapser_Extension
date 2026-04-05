@@ -3,16 +3,63 @@
 <head>
   <meta charset="UTF-8">
   <title>Context Collapser</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="popup.css">
 </head>
 <body>
-  <div class="header">
-    <h1>Collapsed Contexts</h1>
-    <button id="clear-btn" title="Clear all summaries">Clear All</button>
-  </div>
   
-  <div id="summaries-container">
-    <!-- Summaries will be injected here via popup.js -->
+  <div id="loading-overlay" class="loading-overlay">
+    <div class="spinner"></div>
+    <div style="margin-top: 16px; font-weight: 600;">AI is Summarizing, dwell on the pages for a while smart fella...</div>
+    <div style="font-size: 11px; color: var(--text-muted); margin-top: 6px;">Processing tabs sequentially to respect rate limits.</div>
+  </div>
+
+  <div class="layout">
+    <main class="main-content">
+      <div class="header">
+        <div style="display: flex; justify-content: space-between; align-items: center;">
+          <h1><span class="gradient-text">Context</span> Collapser</h1>
+          <div class="power-toggle-container">
+            <span id="power-status" style="font-size: 11px; font-weight: 600; color: var(--text-muted); margin-right: 6px;">OFF</span>
+            <label class="switch">
+              <input type="checkbox" id="master-toggle">
+              <span class="slider round"></span>
+            </label>
+          </div>
+        </div>
+        <div class="header-actions">
+          <button id="manual-collapse-btn" class="action-btn" style="background:var(--primary); color:white; border:none;" title="Instantly summarize and close your currently active tab">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="4 14 10 14 10 20"></polyline><polyline points="20 10 14 10 14 4"></polyline><line x1="14" y1="10" x2="21" y2="3"></line><line x1="3" y1="21" x2="10" y2="14"></line></svg>
+            Collapse Current Tab
+          </button>
+          <button id="copy-btn" class="action-btn" title="Copy session summaries to clipboard">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+          </button>
+          <button id="download-btn" class="action-btn" title="Download session as a text file">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+          </button>
+          <button id="clear-btn" class="action-btn danger" title="Clear current session">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path></svg>
+          </button>
+        </div>
+      </div>
+      
+      <div id="summaries-container">
+        <!-- Summaries will be injected here via popup.js -->
+      </div>
+    </main>
+
+    <aside class="sidebar">
+      <div class="sidebar-header" style="display:flex; justify-content:space-between; align-items:center;">
+        <h2>Sessions</h2>
+        <button id="new-session-btn" title="Create New Virtual Folder" style="background:var(--bg-color); border:1px solid var(--border); border-radius:4px; padding:2px 8px; font-weight:bold; color:var(--text-main); cursor:pointer;">+</button>
+      </div>
+      <div id="session-list" class="session-list">
+        <!-- Sessions injected here -->
+      </div>
+    </aside>
   </div>
 
   <script src="popup.js"></script>

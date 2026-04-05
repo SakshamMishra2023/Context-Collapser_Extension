@@ -13,7 +13,7 @@ function saveOptions() {
   });
 }
 
-// Restores input state using the preferences stored in chrome.storage.
+
 function restoreOptions() {
   chrome.storage.local.get(['geminiApiKey'], (result) => {
     if (result.geminiApiKey) {
@@ -21,6 +21,7 @@ function restoreOptions() {
     }
   });
 }
+
 
 document.addEventListener('DOMContentLoaded', restoreOptions);
 document.getElementById('saveBtn').addEventListener('click', saveOptions);
